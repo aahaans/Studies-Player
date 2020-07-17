@@ -1,18 +1,15 @@
 import React, { Component } from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from "react-router-dom";
-import Header from './components/Header'
-
-import Home from './views/Home'
-import AudioBooks from "./views/AudioBooks";
-import Footer from "./components/Footer";
-import Player from './views/Player'
-import Tools from "./views/Tools"
-import Microphone from "./views/Tools/Microphone"
-import Camera from "./views/Tools/Camera"
+// import {
+//   BrowserRouter as Router,
+//   Switch,
+//   Route,
+// } from "react-router-dom";
+// import ReactMediaVisualizer from "react-media-visualizer";
+// import Main from "../components/Main";
+import ReactMediaVisualizer from "react-media-visualizer";
+// import Main from "./components/Main";
+// import AudioBooks from "./views/AudioBooks";
+// import Player from './views/Player'
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -28,51 +25,17 @@ export default class App extends Component {
   }
 
   render() {
+      console.log("player comp called");
+      console.log("got props", this.props);
     return (
       <React.Fragment>
-        <Router>
-          <div className="react-media-vis-body">
-            <Header />
-            <Switch>
-              <Route exact path="/">
-                <Home />
-              </Route>
-              <Route path="/audio-books" >
-                <AudioBooks />
-              </Route>
-              <Route path="/player/">
-                <Player />
-              </Route>
-              <Route exact path="/tools">
-                <Tools />
-              </Route>
-              <Route path="/tools/microphone">
-                <Microphone />
-              </Route>
-              <Route path="/tools/camera">
-                <Camera />
-              </Route>
-              {/* <Main
-            updatePlaylist={this.updatePlaylist}
-            currentSongIndex={this.state.currentSongIndex}
-            playlist={this.state.playlist}
-            theme={this.state.theme}
-            handleThemeChange={this.handleThemeChange}
-            playlistIsPlaying={this.state.playlistIsPlaying}
-          />
-        </div>
-        <ReactMediaVisualizer
+                  <ReactMediaVisualizer
           playlist={this.state.playlist}
           receiveStateUpdates={this.receiveStateUpdates}
           playlistIsPlaying={this.state.playlistIsPlaying}
           theme={this.state.theme}
           currentSongIndex={this.state.currentSongIndex}
-        /> */}
-            </Switch>
-            <Footer />
-
-          </div>
-        </Router>
+        />
       </React.Fragment>
     );
   }

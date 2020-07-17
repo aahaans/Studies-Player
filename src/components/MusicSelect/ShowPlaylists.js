@@ -6,7 +6,7 @@ const ShowPlaylists = (props) => {
   return (
     <React.Fragment>
       <div className="album">
-        <span style={pointerStyles} onClick={props.clearSelectedAlbum}>‹ Back to Soundtracks</span>
+        <span style={pointerStyles} onClick={props.clearSelectedAlbum}>‹ Back to Lectures</span>
         <div className="album-meta">
           <img src={props.selectedAlbum.albumArtwork} alt={props.selectedAlbum.albumName} />
           <span>{props.selectedAlbum.albumName}</span>

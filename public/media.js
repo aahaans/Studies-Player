@@ -1,6 +1,6 @@
 [
   {
-    "albumName": "Nursery Rhymes",
+    "albumName": "Nursery_Rhymes",
     "albumArtwork": "static/Nursery_Rhymes/Nursery_Rhymes.jpg",
     "albumArtist": "NH",
     "songs": [

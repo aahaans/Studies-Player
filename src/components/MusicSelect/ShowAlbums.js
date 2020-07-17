@@ -1,12 +1,16 @@
 import React from "react";
+import { Link } from 'react-router-dom'
 
 const ShowAlbums = (props) => {
   const pointerStyles = { cursor: "pointer" };
+  const recvProps = props;
 
+  console.log("album props", props);
   return (
     <React.Fragment>
       <h2 style={{textAlign: "center"}}>Lectures</h2>
       <div className="grid">
+     
         {props.media.map((playlist, index) => (
           <div
             className="playlist-square"
@@ -29,7 +33,9 @@ const ShowAlbums = (props) => {
               ) : (
                 <i className="fa fa-play" style={{ paddingLeft: "3px" }} />
               )}
+            
             </div>
+            { recvProps ? (<Link to={{ pathname: '/player/', aboutProps: { foo: "testing"} }}>Go to player</Link>) :(null)}
           </div>
         ))}
       </div>

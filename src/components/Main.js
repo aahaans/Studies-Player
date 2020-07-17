@@ -3,6 +3,8 @@ import ShowPlaylists from './MusicSelect/ShowPlaylists'
 import ShowAlbums from './MusicSelect/ShowAlbums'
 import './styles.css'
 
+// import ShowImage from './MusicSelect/ShowImage' 
+
 export default class Main extends Component {
   constructor(props) {
     super(props)
@@ -25,9 +27,11 @@ export default class Main extends Component {
     console.log("Recieved media and albums",media);
     let selected = selectedAlbum || null;
     console.log("selected", selected ? selected : "did not get selected");
+    console.log(this.state.selectedAlbum)
     return (
       <main>
         <div className="albums">
+          
           {this.state.selectedAlbum
             ? <ShowPlaylists
               clearSelectedAlbum={this.clearSelectedAlbum}
@@ -42,8 +46,16 @@ export default class Main extends Component {
               updatePlaylist={this.props.updatePlaylist}
               currentSongIndex={this.props.currentSongIndex} 
               playlist={this.props.playlist}
-              playlistIsPlaying={this.props.playlistIsPlaying} />}
+              playlistIsPlaying={this.props.playlistIsPlaying}
+              receiveStateUpdates={this.props.receiveStateUpdates}  
+              theme={this.props.theme}
+      
+              
+              />}
         </div>
+        
+        {/* <ShowImage source={this.props.currentSongIndex + 1} /> */}
+
       </main>
     )
   }

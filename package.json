@@ -12,7 +12,9 @@
     "react-media-visualizer": "^1.1.1",
     "react-music-player": "^1.0.3",
     "react-scripts": "3.4.1",
-    "react-web-media-player": "^1.1.6"
+    "react-voice-recorder": "^2.0.0",
+    "react-web-media-player": "^1.1.6",
+    "react-webcam": "^5.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
