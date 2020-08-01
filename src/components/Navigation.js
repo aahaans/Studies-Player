@@ -1,65 +1,209 @@
 import React, { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
-import {useTransition, animated} from 'react-spring'
-import NavigationMenu from './NavigationMenu';
+import clsx from 'clsx';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import Drawer from '@material-ui/core/Drawer';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import List from '@material-ui/core/List';
+import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import HomeIcon from '@material-ui/icons/Home';
+import MenuBookIcon from '@material-ui/icons/MenuBook';
+import AssignmentIcon from '@material-ui/icons/Assignment';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import HelpIcon from '@material-ui/icons/Help';
+import PersonIcon from '@material-ui/icons/Person';
+import { Collapse } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
-function Navigation () {
+const drawerWidth = 215;
 
-    const [showMenu, setShowMenu] = useState(false);
+const useStyles = makeStyles((theme) => ({
+    root: {
+        display: 'flex',
+    },
+    appBar: {
+        transition: theme.transitions.create(['margin', 'width'], {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.leavingScreen,
+        }),
+    },
+    appBarShift: {
+        width: `calc(100% - ${drawerWidth}px)`,
+        marginLeft: drawerWidth,
+        transition: theme.transitions.create(['margin', 'width'], {
+            easing: theme.transitions.easing.easeOut,
+            duration: theme.transitions.duration.enteringScreen,
+        }),
+    },
+    menuButton: {
+        marginRight: theme.spacing(2),
+    },
+    hide: {
+        display: 'none',
+    },
+    drawer: {
+        width: drawerWidth,
+        flexShrink: 0,
+    },
+    drawerPaper: {
+        width: drawerWidth,
+    },
+    drawerHeader: {
+        display: 'flex',
+        alignItems: 'center',
+        padding: theme.spacing(0, 1),
+        // necessary for content to be below app bar
+        ...theme.mixins.toolbar,
+        justifyContent: 'flex-end',
+    },
+    content: {
+        flexGrow: 1,
+        padding: theme.spacing(3),
+        transition: theme.transitions.create('margin', {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.leavingScreen,
+        }),
+        marginLeft: -drawerWidth,
+    },
+    contentShift: {
+        transition: theme.transitions.create('margin', {
+            easing: theme.transitions.easing.easeOut,
+            duration: theme.transitions.duration.enteringScreen,
+        }),
+        marginLeft: 0,
+    },
+}));
 
-    const maskTransitions = useTransition(showMenu, null, {
-        from: { position: 'absolute', opacity: 0 },
-        enter: { opacity: 1 },
-        leave: { opacity: 0 },
-        })
+const Navigation = (props) => {
 
-    const menuTransitions = useTransition(showMenu, null, {
-        from: { opacity: 0, transform: 'transalateX(-100%' },
-        enter: { opacity: 1, transform: 'transalateX(0%' },
-        leave: { opacity: 0, transform: 'transalateX(-100%'},
-        })
+    const classes = useStyles();
+    const theme = useTheme();
+    const [open, setOpen] = useState(false);
+
+    const handleDrawerOpen = () => {
+        setOpen(true);
+    };
+
+    const handleDrawerClose = () => {
+        setOpen(false);
+    };
+
+    const [help, setHelp] = useState(false)
 
     return (
-        <nav>
-          <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet" />
+        <div>
+            <div className={classes.root}>
+                <CssBaseline />
+                <AppBar
+                    position="fixed"
+                    className={clsx(classes.appBar, {
+                        [classes.appBarShift]: open,
+                    })}
+                >
+                    <Toolbar>
+                        <IconButton
+                            color="inherit"
+                            aria-label="open drawer"
+                            onClick={handleDrawerOpen}
+                            edge="start"
+                            className={clsx(classes.menuButton, open && classes.hide)}
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                        <Typography variant="h6" noWrap>
+                            DashBoard
+                        </Typography>
+                        <div>
+                            <NotificationsIcon style={{ marginLeft: "600%" }} />
+                        </div>
+                    </Toolbar>
+                </AppBar>
+                <Drawer
+                    className={classes.drawer}
+                    variant="persistent"
+                    anchor="left"
+                    open={open}
+                    classes={{
+                        paper: classes.drawerPaper,
+                    }}
+                >
+                    <div className={classes.drawerHeader}>
+                        <div>
+                            Welcome Phone number
+                            </div>
+                        <IconButton onClick={handleDrawerClose}>
 
-            <span className="text-xl">
-            <FontAwesomeIcon 
-                icon={faBars}
-                onClick={() => setShowMenu(!showMenu)}
-            />
-            </span>
+                            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
 
-            {
-                maskTransitions.map(({ item, key, props }) =>
-                    item && 
-                    <animated.div 
-                    key={key} 
-                    style={props}
-                    className="bg-black-t-50 fixed top-0 left-0 w-full h-full z-50"
-                    onClick={() => setShowMenu(false)}
-                    >
-                    </animated.div>
-                )
-            }
+                        </IconButton>
+                    </div>
+                    <Divider />
+                    <List>
+                        <ListItem button key={0}>
+                            <Link to="/" >
+                                <ListItemIcon> <HomeIcon /> </ListItemIcon>
+                                <ListItemText primary="Home b" />
+                            </Link>
+                        </ListItem>
+                        <Divider />
+                        <ListItem button key={1}>
+                            <ListItemIcon> <MenuBookIcon /> </ListItemIcon>
+                            <ListItemText primary="Lessons s" />
+                        </ListItem>
+                        <Divider />
+                        <ListItem button key={2}>
+                            <ListItemIcon> <AssignmentIcon /> </ListItemIcon>
+                            <ListItemText primary="Assignments s" />
+                        </ListItem>
+                        <Divider />
+                        <ListItem button key={3}>
+                            <ListItemIcon> <AssignmentIcon /> </ListItemIcon>
+                            <ListItemText primary="My Feedback s" />
+                        </ListItem>
+                        <Divider />
+                        <ListItem button key={4}>
+                            <ListItemIcon> <PersonIcon /> </ListItemIcon>
+                            <ListItemText primary="My Profile b" />
+                        </ListItem>
+                        <Divider />
+                        <ListItem button key={5} onClick={() => setHelp(!help)} >
+                            <ListItemIcon> <HelpIcon /> </ListItemIcon>
+                            <ListItemText primary="Help center" />
 
-            {
-                menuTransitions.map(({ item, key, props }) =>
-                    item && 
-                    <animated.div 
-                    key={key} 
-                    style={props}
-                    className="fixed bg-white top-0 left-0 w-4/5 h-full z-50 shadow p-3"
-                    >
-                        <NavigationMenu
-                        closeMenu={() => setShowMenu(false)}
-                        />
-                    </animated.div>
-                )
-            }
-        </nav>
-    )
+                        </ListItem>
+                        <Collapse in={help}>
+                            <List>
+                                <ListItem>
+                                    <ListItemIcon><HelpIcon /></ListItemIcon>
+                                    <ListItemText primary="test" />
+                                </ListItem>
+                            </List>
+                        </Collapse>
+                        <Divider />
+                        <ListItem button key={6}>
+                            <ListItemIcon> <ExitToAppIcon /> </ListItemIcon>
+                            <ListItemText primary="Logout b" />
+                        </ListItem>
+                        <Divider />
+                    </List>
+                </Drawer>
+
+            </div>
+
+
+
+        </div>
+    );
 }
 
 export default Navigation;

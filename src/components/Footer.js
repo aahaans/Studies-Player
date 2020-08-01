@@ -1,14 +1,38 @@
-  
 import React from 'react';
+import { BottomNavigation, BottomNavigationAction, Paper } from '@material-ui/core';
+import HomeIcon from '@material-ui/icons/Home';
+import PersonIcon from '@material-ui/icons/Person';
+// import { makeStyles } from '@material-ui/core/styles';
 
-function Footer () {
+function Footer() {
+
+    // const useStyles = makeStyles({
+    //     root: {
+    //         width: 100,
+    //     },
+    // }); 
+
+    // const classes = useStyles()
+
+
+    const [valueBottom, setValueBottom] = React.useState(0);
 
     return (
-        <footer className="bg-gray-200 text-center text-xs p-3 mt-px fixed bottom-0 w-full">
-                      <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet" />
-
-            &copy; Copyright 2020
-        </footer>
+        <div style={{ position: "fixed", bottom: "0px", width: "100%", marginTop: "10%" }} >
+            <Paper elevation={5} >
+                <BottomNavigation
+                    value={valueBottom}
+                    onChange={(event, newValue) => {
+                        setValueBottom(newValue);
+                    }}
+                    showLabels
+                // className={classes.root}
+                >
+                    <BottomNavigationAction label="Home" icon={<HomeIcon />} />
+                    <BottomNavigationAction label="Profile" icon={<PersonIcon />} />
+                </BottomNavigation>
+            </Paper>
+        </div>
     )
 }
 

@@ -1,4 +1,4 @@
-/* @import url('https://use.fontawesome.com/releases/v5.4.2/css/all.css'); */
+@import url('https://use.fontawesome.com/releases/v5.4.2/css/all.css');
 
 
 * {
@@ -11,20 +11,20 @@ main {
   display: flex;
 }
 
-nav {
+/* nav {
   height: 50px;
   width: 100%;
   box-shadow: 0 0 1px 1px rgba(0,0,0,.1);
   /* color: white; */
-  color: black;
-  display: flex;
-}
+  /* color: black;
+  display: flex; */
+/* } */
 
 .menu{
   color: black;
 }
 
-nav div {
+/* nav div {
   font-size: 22px;
   height: 100%;
   width: 450px;
@@ -32,12 +32,12 @@ nav div {
   display: flex;
   align-items: center;
   /* background: #1c2532; */
-}
+/* } */
 
-nav .links {
+/* nav .links {
   background: #28324366;
   flex-grow: 1;
-}
+} */
 
 main .albums {
   padding: 0 17px;
@@ -52,6 +52,7 @@ main .albums {
 main h2 {
   color: white;
   /* margin: -20px; */
+  font-size: 23px;
   padding: 10px 0px 10px 0px;
 }
 
